@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="hoverStop.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>$(document).ready(function() {
+  const container = $('.container');
+
+  container.on('mousewheel', function(e) {
+    // Normalize the wheel delta across browsers
+    const normalizedWheelDelta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+
+    // Adjust scroll position based on wheel delta
+    container.scrollLeft(container.scrollLeft() + normalizedWheelDelta);
+
+    // Prevent default scroll behavior
+    return false;
+  });
+});</script>
+
+</head>
+<body>
+<div class="container">
+    <div class="slide-container">
+        <div class="slide-image">
+            <img src="with_num/image1.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image2.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image3.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image4.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image5.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image6.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image7.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image8.png">
+        </div>
+    </div>
+    <div class="slide-container">
+        <div class="slide-image">
+            <img src="with_num/image1.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image2.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image3.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image4.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image5.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image6.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image7.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image8.png">
+        </div>
+    </div>
+    <div class="slide-container">
+        <div class="slide-image">
+            <img src="with_num/image1.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image2.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image3.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image4.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image5.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image6.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image7.png">
+        </div>
+        <div class="slide-image">
+            <img src="with_num/image8.png">
+        </div>
+    </div>
+    </div>
+</script>
+</body>
+</html>

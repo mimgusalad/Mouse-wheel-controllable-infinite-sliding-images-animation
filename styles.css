@@ -1,0 +1,60 @@
+html, body {
+    height: 100%;
+}
+
+html {
+    display: table;
+    margin: auto;
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.container {
+  position: relative;
+  width: 1600px;
+  height: 600px;
+  display: flex;
+  overflow-x: hidden; /* Change to "auto" to enable horizontal scroll */
+  scroll-snap-type: x mandatory; /* Add scroll snapping */
+  padding: 100px 0px 0px 100px;
+  }
+
+.slide-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: loop 10s linear infinite;
+  animation-delay: -4s;
+}
+
+.container:hover > .slide-container{
+ animation-play-state: paused;
+}
+
+.slide-image {
+  width: 300px;
+  height: 500px;
+  margin: 40px;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+/* 이미지 hover시 커짐 */
+.slide-image:hover {
+  transform: scale(1.1);
+}
+
+.slide-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes loop {
+  100% {
+    transform: translateX(-100%);
+  }
+}
