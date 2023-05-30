@@ -2,7 +2,6 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
-    <script src="hoverStop.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>$(document).ready(function() {
   const container = $('.container');
@@ -15,92 +14,150 @@
     container.scrollLeft(container.scrollLeft() + normalizedWheelDelta);
 
     // Prevent default scroll behavior
-    return false;
+    //return false;
   });
-});</script>
+});
+    </script>
+
+    <script>
+    var disableFlag = false;
+
+    $(document).on('mouseenter', '.slide-image', function(){
+    if(!disableFlag){
+        $(this).parent('div').css('animation-play-state', 'paused');
+        $('.slide-image').not(this).css('transform', 'scale(0.8)');
+        $('.slide-image').css('margin','5px');
+        $('.slide-image label').css('filter', 'grayscale(0%)');
+    }
+    });
+
+    $(document).on('mouseleave', '.slide-image', function(){
+    if(!disableFlag){
+        $('.slide-image').css('margin','20px');
+        $(this).parent('div').css('animation-play-state', 'running');
+        $('.slide-image').css('transform', 'scale(1)');
+        $('.slide-image label').css('filter', 'grayscale(0%)');
+    }
+    });
+
+    var secondStep = false;
+
+    $(document).on('change', 'input[type="checkbox"]', function(){
+    disableFlag = true;
+        $('.slide-image').css('margin','5px');
+        $(this).parent('div').css('animation-play-state', 'paused');
+        $('input[type="checkbox"]:not(:checked)').each(function() {
+            var label = $('label[for="' + $(this).attr('id') + '"]');
+            label.css('filter', 'grayscale(100%)');
+            label.parent().css('transform', 'scale(0.8)');
+        });
+        $('input[type="checkbox"]:checked').each(function() {
+            var label = $('label[for="' + $(this).attr('id') + '"]');
+            label.css('filter', 'grayscale(0%)');
+            label.parent().css('transform', 'scale(1)');
+        });
+
+        if (disableFlag && $('input[type="checkbox"]:checked').length === 0) {
+            disableFlag=false;
+        }
+    });
+
+$(document).ready(function() {
+  const container = $('.container');
+  const slideContainer = $('.slide-container');
+  const slideImages = $('.slide-image');
+  const numImages = slideImages.length;
+  const imageWidth = slideImages.outerWidth(true);
+  const containerWidth = container.width();
+
+  let cloneCount = Math.ceil(containerWidth / imageWidth);
+  let clonedSet = slideContainer.html();
+
+  while (cloneCount > 0) {
+    slideContainer.append(clonedSet);
+    cloneCount--;
+  }
+
+  container.on('mousewheel', function(e) {
+    const normalizedWheelDelta = e.originalEvent.wheelDelta || -e.originalEvent.detail;
+    container.scrollLeft(container.scrollLeft() + normalizedWheelDelta);
+
+    const scrollLeft = container.scrollLeft();
+    const numVisibleImages = Math.ceil(containerWidth / imageWidth);
+
+    if (scrollLeft === 0) {
+      container.scrollLeft(numImages * imageWidth);
+    } else if (scrollLeft >= (numImages + numVisibleImages) * imageWidth) {
+      container.scrollLeft(scrollLeft - (numImages * imageWidth));
+    }
+  });
+});
+
+
+    </script>
 
 </head>
 <body>
 <div class="container">
     <div class="slide-container">
         <div class="slide-image">
-            <img src="with_num/image1.png">
+            <input type="checkbox" id="check1" name="keyword" value="sound" >
+            <label for="check1">
+                <img src="with_num/image1.png">
+            </label>
+
         </div>
         <div class="slide-image">
-            <img src="with_num/image2.png">
+            <input type="checkbox" id="check2" name="keyword" value="smell">
+            <label for="check2">
+                <img src="with_num/image2.png">
+            </label>
         </div>
         <div class="slide-image">
-            <img src="with_num/image3.png">
+            <input type="checkbox" id="check3" name="keyword" value="security">
+            <label for="check3">
+                <img src="with_num/image3.png">
+            </label>
+
         </div>
         <div class="slide-image">
-            <img src="with_num/image4.png">
+            <input type="checkbox" id="check4" name="keyword" value="garbage">
+            <label for="check4">
+                <img src="with_num/image4.png">
+            </label>
+
         </div>
         <div class="slide-image">
-            <img src="with_num/image5.png">
+            <input type="checkbox" id="check5" name="keyword" value="furniture">
+            <label for="check5">
+                <img src="with_num/image5.png">
+            </label>
+
         </div>
         <div class="slide-image">
-            <img src="with_num/image6.png">
+            <input type="checkbox" id="check6" name="keyword" value="sunlight">
+            <label for="check6">
+                <img src="with_num/image6.png">
+            </label>
+
         </div>
         <div class="slide-image">
-            <img src="with_num/image7.png">
+            <input type="checkbox" id="check7" name="keyword" value="convenience">
+            <label for="check7">
+                <img src="with_num/image7.png">
+            </label>
+
         </div>
         <div class="slide-image">
-            <img src="with_num/image8.png">
+            <input type="checkbox" id="check8" name="keywrod" value="bug">
+            <label for="check8">
+                <img src="with_num/image8.png">
+            </label>
+
         </div>
+
     </div>
-    <div class="slide-container">
-        <div class="slide-image">
-            <img src="with_num/image1.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image2.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image3.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image4.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image5.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image6.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image7.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image8.png">
-        </div>
-    </div>
-    <div class="slide-container">
-        <div class="slide-image">
-            <img src="with_num/image1.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image2.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image3.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image4.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image5.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image6.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image7.png">
-        </div>
-        <div class="slide-image">
-            <img src="with_num/image8.png">
-        </div>
-    </div>
-    </div>
-</script>
+
+</div>
 </body>
 </html>
